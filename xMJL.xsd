@@ -1,0 +1,54 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="xMJLentry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="xMJLmetadata">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:string" name="xMJLauthor"/>
+              <xs:element type="xs:integer" name="xMJLentryno"/>
+              <xs:element type="xs:dateTime" name="xMJLdate"/>
+              <xs:element type="xs:boolean" name="xMJLrotation"/>
+              <xs:element name="xMJLkeywords">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="xMJLkeyword" maxOccurs="8" minOccurs="0"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="order"/>
+                  <xs:attribute type="xs:string" name="format"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:string" name="xMJLunsigned"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="xMJLtext">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="xMJLline" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType mixed="true">
+                  <xs:choice maxOccurs="unbounded">
+                    <xs:element type="xs:string" name="xMJLem" minOccurs="0"/>
+					<xs:element name="xMJLkey" maxOccurs="8" minOccurs="0">
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:extension base="xs:string">
+									<xs:attribute type="xs:string" name="data" use="optional"/>
+								</xs:extension>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element type="xs:string" name="xMJLund" maxOccurs="unbounded" minOccurs="0"/>
+                  </xs:choice>
+                  <xs:attribute type="xs:string" name="type" use="required"/>
+                  <xs:attribute type="xs:string" name="reference" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element ref="xMJLauthor"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
